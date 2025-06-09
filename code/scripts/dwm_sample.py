@@ -141,9 +141,9 @@ def dwm_sample(**deps):
 
     device = MBConfig.device
     
-    obs_save_path = f'/home/atuin/b241dd/b241dd12/workarea/dwm/mb_dataset_2e6/{MBConfig.horizon}/{env}/horizon_{MBConfig.horizon}/RTG_{MBConfig.RTG}/observations.npy'
-    act_save_path = f'/home/atuin/b241dd/b241dd12/workarea/dwm/mb_dataset_2e6/{MBConfig.horizon}/{env}/horizon_{MBConfig.horizon}/RTG_{MBConfig.RTG}/actions.npy'
-    rewards_save_path = f'/home/atuin/b241dd/b241dd12/workarea/dwm/mb_dataset_2e6/{MBConfig.horizon}/{env}/horizon_{MBConfig.horizon}/RTG_{MBConfig.RTG}/rewards.npy'
+    obs_save_path = f'/home/stud/xhan/projects/DAWM/mb_dataset_2e6/{MBConfig.horizon}/{env}/horizon_{MBConfig.horizon}/RTG_{MBConfig.RTG}/observations.npy'
+    act_save_path = f'/home/stud/xhan/projects/DAWM/mb_dataset_2e6/{MBConfig.horizon}/{env}/horizon_{MBConfig.horizon}/RTG_{MBConfig.RTG}/actions.npy'
+    rewards_save_path = f'/home/stud/xhan/projects/DAWM/mb_dataset_2e6/{MBConfig.horizon}/{env}/horizon_{MBConfig.horizon}/RTG_{MBConfig.RTG}/rewards.npy'
 
     obs_directory = os.path.dirname(obs_save_path)
     act_directory = os.path.dirname(act_save_path)

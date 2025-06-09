@@ -1,28 +1,26 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=eval
 #SBATCH --output=slurmlogs/train/%x_%j.out 
-#SBATCH --gres=gpu:a100:1
 #SBATCH --cpus-per-task=4
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --time=24:00:00
-#SBATCH --mail-type=START,END,FAIL,REQUEUE          # Notifications for job done & fail
-#SBATCH --mail-user=Li.Yusong@campus.lmu.de,Xiao.Han@campus.lmu.de  # Send-to email address (replace with your email)
-# ===== 环境准备 =====
+#SBATCH --nodelist=worker-5
 
-export http_proxy=http://proxy:80
-export https_proxy=http://proxy:80
+# ===== 环境准备 =====
 source ~/.bashrc
-conda activate newdiff
-cd /home/atuin/b241dd/b241dd12/workarea/dwm/code/analysis
+conda activate dwm
+cd /home/stud/xhan/projects/DAWM/code/analysis || { echo "❌ cd failed"; exit 1; }
 
 # ===== 参数接收 =====
 ENV=$1
 HORIZON=$2
 RETURNSCALE=$3
-
-# 创建唯一配置文件名
 CONFIG_FILE="temp_config_${ENV}_${HORIZON}_${RETURNSCALE}.jsonl"
+
+# ===== 调试输出 =====
+echo "📂 当前目录: $(pwd)"
+echo "🔍 查找 default_inv_train.jsonl..."
+ls -l default_inv_train.jsonl || { echo "❌ 找不到 default_inv_train.jsonl"; exit 1; }
 
 # ===== 生成 JSONL 文件 =====
 python <<EOF

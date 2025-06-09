@@ -11,9 +11,9 @@
 
 
 source ~/.bashrc
-conda activate newdiff
+conda activate dwm
 # ===== 进入代码目录 =====
-cd /home/atuin/b241dd/b241dd12/workarea/dwm/code/analysis
+cd /home/stud/xhan/projects/DAWM/code/analysis
 # ===== 启动任务 =====
 
 ENV=$1         # e.g., hopper-medium-v2

@@ -7,10 +7,15 @@ import os
 def main(**deps):
     from ml_logger import logger, RUN
     from config.locomotion_config import Config
-
+    
     RUN._update(deps)
     Config._update(deps)
-
+    wandb.init(
+        project="dawm",
+        entity="dawm",
+        name=f"{Config.env}_h{Config.horizon}",
+        config=vars(Config)
+    )
     # logger.remove('*.pkl')
     # logger.remove("traceback.err")
     logger.log_params(Config=vars(Config), RUN=vars(RUN))
@@ -208,7 +213,7 @@ def main(**deps):
 
 
     # Initialize wandb (一次就够)
-    wandb.init(project="dwm", entity="bathesis", name=Config.env)
+    
 
     # Checkpoint 配置
     checkpoint_dir = os.path.join(Config.bucket, logger.prefix, 'checkpoint')
