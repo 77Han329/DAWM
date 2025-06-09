@@ -1,0 +1,30 @@
+# === Model and dataset outputs ===
+# weights/
+mb_dataset/
+training_sample/
+training_reference/
+
+# === Log and debug files ===
+*.pkl
+*.log
+*.err
+*.bak
+*.tmp
+*.pyc
+wandb/
+
+# === Binary and media files (prevent logger.diff crash) ===
+#  *.pt
+#  *.npy
+*.npz
+*.zip
+*.tar
+*.h5
+*.onnx
+*.bin
+*.gif
+*.jpg
+*.jpeg
+*.png
+*.mp4
+*.avi
