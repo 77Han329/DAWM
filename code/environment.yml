@@ -1,4 +1,4 @@
-name: newdiff
+name: dawm
 channels:
 - defaults
 - conda-forge
@@ -9,8 +9,8 @@ dependencies:
 - pip:
     - -f https://download.pytorch.org/whl/torch_stable.html
     - numpy
-    - gym==0.18.0
-    - mujoco-py==2.0.2.13
+    - gym==0.17.3
+    - mujoco-py==2.1.2.14
     - matplotlib==3.3.4
     - torch==1.9.1+cu111
     - typed-argument-parser

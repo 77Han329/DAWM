@@ -6,7 +6,7 @@ class MBConfig(ParamsProto):
     # misc
     seed = 20 # [20, 40, 60, 80, 100]
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    bucket = '/home/stud/xhan/projects/DAWM/weights/8'
+    bucket = '/dss/dsshome1/0C/di97zuq/project/DAWM/weights/8'
     dataset = 'hopper-medium-v2'
 
     ## model

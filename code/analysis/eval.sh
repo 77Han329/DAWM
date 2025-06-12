@@ -12,8 +12,10 @@
 
 source ~/.bashrc
 conda activate dwm
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/nvidia
 # ===== 进入代码目录 =====
-cd /home/stud/xhan/projects/DAWM/code/analysis
+cd /dss/dsshome1/0C/di97zuq/project/DAWM/code/analysis
 # ===== 启动任务 =====
 
 ENV=$1         # e.g., hopper-medium-v2

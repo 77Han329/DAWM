@@ -1,18 +1,10 @@
 #!/usr/bin/env bash
-#SBATCH --job-name=train_dawm
-#SBATCH --output=slurmlogs/train/%x_%j.out 
-#SBATCH --partition=lrz-hgx-h100-94x4
-#SBATCH --gres=gpu:1
-#SBATCH --cpus-per-task=4
-#SBATCH --nodes=1
-#SBATCH --ntasks=1
-#SBATCH --time=2-00:00:00  # 2 天
 
 # ===== 环境准备 =====
 source ~/.bashrc
 conda activate dawm
 
-# 确保能找到 CUDA 驱动（否则 torch.cuda 可能为 False）
+# 添加 PYTHONPATH 以确保模块能找到
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/nvidia
 export PYTHONPATH=$PYTHONPATH:/dss/dsshome1/0C/di97zuq/project/DAWM/code
 
@@ -24,14 +16,14 @@ HORIZON=$2
 RETURNSCALE=$3
 CONFIG_FILE="temp_config_${ENV}_${HORIZON}_${RETURNSCALE}.jsonl"
 
-# ===== 检查 GPU 状态 =====
-echo "🔍 Checking GPU availability..."
+# ===== 检查 GPU 是否可用 =====
+echo "🔍 正在检查 GPU 可用性..."
 python - <<EOF
 import torch
 if torch.cuda.is_available():
-    print(f"✅ CUDA device: {torch.cuda.get_device_name(0)}")
+    print(f"✅ GPU 可用：{torch.cuda.get_device_name(0)}")
 else:
-    print("❌ torch.cuda.is_available() == False — CUDA device not available")
+    print("⚠️ 警告：当前 PyTorch 无法使用 GPU，任务将使用 CPU 执行。请检查 CUDA 和 PyTorch 是否匹配。")
 EOF
 
 # ===== 调试输出 =====
@@ -46,7 +38,6 @@ import json
 env_new = "$ENV"
 horizon_new = int($HORIZON)
 return_scale_new = float($RETURNSCALE)
-
 
 with open("default_inv_train.jsonl", "r") as f:
     lines = f.readlines()

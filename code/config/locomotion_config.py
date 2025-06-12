@@ -6,7 +6,7 @@ class Config(ParamsProto):
     # misc
     seed = 20 # [20, 40, 60, 80, 100]
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    bucket = '/home/stud/xhan/projects/DAWM/weights/2' # /2, /4, /8
+    bucket = '/dss/dsshome1/0C/di97zuq/project/DAWM/weights/2' # /2, /4, /8
     dataset = 'hopper-medium-replay-v2'
 
     ## model

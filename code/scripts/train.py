@@ -214,7 +214,11 @@ def main(**deps):
 
     # Initialize wandb (一次就够)
     
-
+    wandb.init(
+        project="dawm",
+        entity="dawm",
+        name=f"{Config.env}-{Config.horizon}",
+    )
     # Checkpoint 配置
     checkpoint_dir = os.path.join(Config.bucket, logger.prefix, 'checkpoint')
     checkpoint_file = os.path.join(checkpoint_dir, 'state.pt')
@@ -232,7 +236,7 @@ def main(**deps):
         print(f'⚠️ No checkpoint found at {checkpoint_file}, starting from scratch.')
 
     # 设置训练参数
-    total_train_steps = int(3e6)  # 训练总步数
+    total_train_steps = int(2e6)  # 训练总步数
     n_epochs = total_train_steps // n_steps_per_epoch
 
     # 计算起始 epoch（恢复时用）

@@ -234,7 +234,7 @@ class Trainer(object):
 
         savepath_obs = os.path.join('training_reference', f'{env}', 'images', f'sample-reference.png')
         self.renderer.composite(savepath_obs, obs)
-        actions_file_path = '/home/atuin/b241dd/b241dd12/dwm/training_reference/{}/action-reference.npy'.format(env)
+        actions_file_path = '/dss/dsshome1/0C/di97zuq/project/DAWM/training_reference/{}/action-reference.npy'.format(env)
         act_directory = os.path.dirname(actions_file_path)
         os.makedirs(act_directory, exist_ok=True)
         np.save(act_directory, acts)
@@ -375,8 +375,8 @@ class Trainer(object):
 
             savepath = os.path.join('training_sample', f'{env}', 'images', f'sample-{i}.png')
             self.renderer.composite(savepath, observations)
-            actions_file_path = f'/home/atuin/b241dd/b241dd12/dwm/training_sample/{env}/action-reference-{i}.npy'
-            rewards_file_path = f'/home/atuin/b241dd/b241dd12/dwm/training_sample/{env}/sample-rewards-{i}.npy'
+            actions_file_path = f'/dss/dsshome1/0C/di97zuq/project/DAWM/training_sample/{env}/action-reference-{i}.npy'
+            rewards_file_path = f'/dss/dsshome1/0C/di97zuq/project/DAWM/training_sample/{env}/sample-rewards-{i}.npy'
             act_directory = os.path.dirname(actions_file_path)
             os.makedirs(act_directory, exist_ok=True)
             np.save(act_directory, ref_acts)
