@@ -44,7 +44,7 @@ def main(cfg):
     
     env_spec = utils.get_env_spec(cfg.env)
     
-    print("\n\n Loading ssorl mode traj.")
+    print("\n\n Loading original offline traj.")
     (
         offline_trajs,
         state_mean,
@@ -261,7 +261,7 @@ def main(cfg):
                 for ii in range(len(offline_trajs))
                 if ii in action_available_ind
             ]
-    else:
+    elif cfg.dwm_mode:
         print("\n\n Loading dwm mode traj.")
         (
             full_dwm_trajs,
@@ -279,12 +279,16 @@ def main(cfg):
             env_spec.action_range,
             cfg,
         )
-    if cfg.experiment == "ssorl":
-        save_ssorl_predicted_trajs(cfg.env,cfg.traj_len,new_trajs)
-    elif cfg.experiment =="dwm":
-        save_predicted_trajs(cfg.env,cfg.traj_len,new_trajs)
-    elif cfg.experiment =="dwmt":
-        save_dwmt_predicted_trajs(cfg.env,cfg.traj_len,new_trajs)
+        
+    else:
+        raise ValueError("You must specify either ssorl_mode or dwm_mode in the config.")
+        
+    #if cfg.experiment == "ssorl":
+       # save_ssorl_predicted_trajs(cfg.env,cfg.traj_len,new_trajs)
+   # elif cfg.experiment =="dwm":
+   #     save_predicted_trajs(cfg.env,cfg.traj_len,new_trajs)
+   # elif cfg.experiment =="dwmt":
+  #      save_dwmt_predicted_trajs(cfg.env,cfg.traj_len,new_trajs)
 
     print(f"\n\n Offline RL Training data contains {len(new_trajs)} trajectories.")
 
